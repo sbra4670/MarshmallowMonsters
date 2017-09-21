@@ -2,19 +2,30 @@ package monster.controller;
 
 import monster.model.MarshmallowMonster;
 import java.util.Scanner;
+import monster.view.MonsterDisplay;
 
-public class MonsterController
-{
+public class MonsterController {
+
+private MonsterDisplay popup;
+
+public MonsterController(){
+	popup = new MonsterDisplay();
+}
+
 	public void start()
 	{
 		MarshmallowMonster basic = new MarshmallowMonster();
-		System.out.println(basic);
+	//	System.out.println(basic);
+		popup.displayText(basic.toString());
 		MarshmallowMonster fred = new MarshmallowMonster("Silly Fred Monster", 7, 8, 6.7, true);
-		System.out.println(fred);
-		System.out.println("I am feeling hungry, I am going to eat one of fred's arms");
+	//	System.out.println(fred);
+		popup.displayText(fred.toString());
+	//	System.out.println("I am feeling hungry, I am going to eat one of fred's arms");
+		popup.displayText("I am feeling hungry, I am going to eat one of fred's arms");
 		fred.setArmCount(fred.getArmCount() - 1);
-		System.out.println(fred);
-
+	//	System.out.println(fred);
+		popup.displayText(fred.toString());
+		
 		interactWithMonster(fred);
 	}
 	private void interactWithMonster(MarshmallowMonster currentMonster)
@@ -56,7 +67,13 @@ public class MonsterController
 			{
 				System.out.println("More Likely");
 			}
+		
+		popup.displayText("Hi there ready to play???");
+		String answer = popup.getResponse("What is the air speed of a coconut laden swallow");
+		System.out.println();
+			
 		}
 		myScanner.close();
 	}
 }
+
